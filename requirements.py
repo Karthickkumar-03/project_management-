@@ -1,0 +1,11 @@
+fastapi
+sqlalchemy
+passlib
+pydantic
+psycopg2
+pydantic[email]
+fastapi[standard]
+bcrypt
+python-jose[cryptography]
+PyJWT
+alembic
