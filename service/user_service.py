@@ -1,4 +1,3 @@
-
 from sqlalchemy.orm import Session
 from fastapi import status
 from models.user.user import User as UserModel, Role as RoleModel
@@ -82,7 +81,6 @@ class UserService:
             "data": self.map_user(user).dict(),
             "error": None
         }
-
     # Update user
     def update_user(self, user_id: int, user_in: UserUpdate):
         user = user_crud.get(self.db, user_id)
@@ -92,7 +90,6 @@ class UserService:
                 error="Invalid user ID",
                 status_code=status.HTTP_404_NOT_FOUND
             )
-
         if user_in.email and self.db.query(UserModel).filter(
             UserModel.email == user_in.email, UserModel.user_id != user_id
         ).first():
@@ -101,7 +98,6 @@ class UserService:
                 error="Duplicate email",
                 status_code=status.HTTP_400_BAD_REQUEST
             )
-
         try:
             updated_user = user_crud.update(self.db, user, user_in)
             return {
@@ -139,4 +135,3 @@ class UserService:
                 error=str(e),
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
- 
